@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
+import { userInfo } from "./data/user";
 
 function App() {
   /**
@@ -11,22 +12,35 @@ function App() {
    */
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
+  const [user, setUser] = useState(null);
+
+  console.log(user);
+
   //function to log in the user
   const logginUser = () => {
-    setUserIsLoggedIn(true);
+    setUser(userInfo);
+    // setUserIsLoggedIn(true);
   };
 
   // function to log out the user
   const logOutUser = () => {
-    setUserIsLoggedIn(false);
+    setUser(null);
+    // setUserIsLoggedIn(false);
   };
 
   console.log(userIsLoggedIn);
   return (
     <>
-      {userIsLoggedIn ? (
+      {user !== null ? (
         <>
           <h1>you are logged in</h1>
+          <div className="">
+            <p>id: {user.id}</p>
+            <p>Name: {user.name}</p>
+            <p>email: {user.email}</p>
+            <p>age: {user.age}</p>
+            <p>occupation: {user.occupation}</p>
+          </div>
           <button onClick={logOutUser}>Log out</button>
         </>
       ) : (
