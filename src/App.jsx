@@ -1,57 +1,54 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
-import { userInfo } from "./data/user";
 
 function App() {
-  /**
-   * The userIsLoggedIn is the main variable. Inreact, state is immutable, that is, we can't change the value of a state.
-   *
-   * This is where the other variable come in (setUserIsLoggedIn). You can use it to change the main variable. For example, if the main variable is false, you can set (change) it to true.
-   */
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
 
-  const [user, setUser] = useState(null);
-
-  console.log(user);
-
-  //function to log in the user
-  const logginUser = () => {
-    setUser(userInfo);
-    // setUserIsLoggedIn(true);
+  const logInAsRSM = () => {
+    setUserRole("RSM");
   };
 
-  // function to log out the user
-  const logOutUser = () => {
-    setUser(null);
-    // setUserIsLoggedIn(false);
+  const logInAsAdjutant = () => {
+    setUserRole("ADJUTANT");
   };
 
-  console.log(userIsLoggedIn);
+  const logOut = () => {
+    setUserRole(null);
+  };
+
   return (
-    <>
-      {user !== null ? (
-        <>
-          <h1>you are logged in</h1>
-          <div className="">
-            <p>id: {user.id}</p>
-            <p>Name: {user.name}</p>
-            <p>email: {user.email}</p>
-            <p>age: {user.age}</p>
-            <p>occupation: {user.occupation}</p>
-          </div>
-          <button onClick={logOutUser}>Log out</button>
-        </>
-      ) : (
-        <>
-          <h1>you are not logged in,please log in </h1>
-          <button onClick={logginUser}>Log in</button>
-        </>
+    <div>
+      {userRole === "RSM" && (
+        <div>
+          <h1>Sorry, you can't access this information.</h1>
+          <button onClick={logOut}>Log out</button>
+        </div>
       )}
+
+      {userRole === "ADJUTANT" && (
+        <div>
+          <h1>You are logged in as ADJUTANT</h1>
+          <p>Admin-Only Content:</p>
+          <p>This content is visible only to ADJUTANT.</p>
+          <p>stateOfPol: "250ltrs"</p>
+          <p>MvmtOfTps: "Accra,Tema"</p>
+          <p>unitAccommodation: "250 units"</p>
+          <button onClick={logOut}>Log out</button>
+        </div>
+      )}
+
+      {userRole === null && (
+        <div>
+          <h1>You are not logged in, please log in</h1>
+          <button onClick={logInAsRSM}>Log in as RSM</button>
+          <button onClick={logInAsAdjutant}>Log in as ADJUTANT</button>
+        </div>
+      )}
+
       <FirstComponent />
       <SecondComponent />
-    </>
+    </div>
   );
 }
 
