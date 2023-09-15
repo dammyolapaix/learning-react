@@ -4,7 +4,9 @@ export const userInfo = {
   email: "henri@gmail.com",
   age: 20,
   occupation: "Farmer",
-  //   role: "", // The role should either be Adjutant or RSM
+  role: "Adjutant", // The role should either be Adjutant or RSM
+  fuelState: "250 litres",
+  troopsMovement: "300 pers",
 };
 
 // Adjutant, RSM

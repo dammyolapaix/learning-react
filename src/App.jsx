@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
+import { userInfo } from "./data/user";
 
 function App() {
   const [userRole, setUserRole] = useState(null);
+
+  const [userInfo, setUserInfo] = useState(null);
 
   const logInAsRSM = () => {
     setUserRole("RSM");
@@ -19,6 +22,34 @@ function App() {
 
   return (
     <div>
+      {user !== null ? (
+        <>
+          <h1>you are logged in</h1>
+          <div className="">
+            <p>id: {user.id}</p>
+            <p>Name: {user.name}</p>
+            <p>email: {user.email}</p>
+            <p>age: {user.age}</p>
+            <p>occupation: {user.occupation}</p>
+            <p>role: {user.role}</p>
+            {user.role === Adjutant ? (
+              <>
+                <p>State of Fuel is {user.fuelState} </p>
+                <p>Movement of troops{user.troopsMovement} </p>
+              </>
+            ) : (
+              <p></p>
+            )}
+          </div>
+          <button onClick={logOutUser}>Log out</button>
+        </>
+      ) : (
+        <>
+          <h1>you are not logged in,please log in </h1>
+          <button onClick={logginUser}>Log in</button>
+        </>
+      )}
+
       {userRole === "RSM" && (
         <div>
           <h1>Sorry, you can't access this information.</h1>
