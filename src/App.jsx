@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
-import { userInfo } from "./data/user";
+import { userInfo } from "./data/userInfo";
 
 function App() {
   const [userRole, setUserRole] = useState(null);
-
   const [userInfo, setUserInfo] = useState(null);
 
   const logInAsRSM = () => {
@@ -22,31 +21,32 @@ function App() {
 
   return (
     <div>
-      {user !== null ? (
+      {userInfo !== null ? (
         <>
           <h1>you are logged in</h1>
           <div className="">
-            <p>id: {user.id}</p>
-            <p>Name: {user.name}</p>
-            <p>email: {user.email}</p>
-            <p>age: {user.age}</p>
-            <p>occupation: {user.occupation}</p>
-            <p>role: {user.role}</p>
-            {user.role === Adjutant ? (
+            <p>id: {userInfo.id}</p>
+            <p>Name: {userInfo.name}</p>
+            <p>email: {userInfo.email}</p>
+            <p>age: {userInfo.age}</p>
+            <p>occupation: {userInfo.occupation}</p>
+            <p>role: {userInfo.role}</p>
+            {userInfo.role === "Adjutant" ? (
               <>
-                <p>State of Fuel is {user.fuelState} </p>
-                <p>Movement of troops{user.troopsMovement} </p>
+                <p>State of Fuel is {userInfo.fuelState} </p>
+                <p>Movement of troops: {userInfo.troopsMovement} </p>
               </>
             ) : (
               <p></p>
             )}
           </div>
-          <button onClick={logOutUser}>Log out</button>
+          <button onClick={logOut}>Log out</button>
         </>
       ) : (
         <>
-          <h1>you are not logged in,please log in </h1>
-          <button onClick={logginUser}>Log in</button>
+          <h1>you are not logged in, please log in </h1>
+          <button onClick={logInAsRSM}>Log in as RSM</button>
+          <button onClick={logInAsAdjutant}>Log in as ADJUTANT</button>
         </>
       )}
 
@@ -68,7 +68,6 @@ function App() {
           <button onClick={logOut}>Log out</button>
         </div>
       )}
-
       {userRole === null && (
         <div>
           <h1>You are not logged in, please log in</h1>
@@ -76,7 +75,6 @@ function App() {
           <button onClick={logInAsAdjutant}>Log in as ADJUTANT</button>
         </div>
       )}
-
       <FirstComponent />
       <SecondComponent />
     </div>
