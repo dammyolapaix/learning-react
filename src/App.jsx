@@ -1,83 +1,59 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
-import { userInfo } from "./data/userInfo";
+import { userInfo } from "./data/user";
 
 function App() {
-  const [userRole, setUserRole] = useState(null);
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
-  const logInAsRSM = () => {
-    setUserRole("RSM");
+  // Function to log in the user
+  const userLoggIn = (role) => {
+    // set user information and role base on role
+    if (role === "RSM") {
+      setUserInfo(null); //clear user info
+      setUserRole("RSM");
+    } else if (role === "ADJUTANT") {
+      setUserInfo(userInfo);
+      setUserRole("ADJUTANT");
+    }
+    setUserIsLoggedIn(true);
   };
 
-  const logInAsAdjutant = () => {
-    setUserRole("ADJUTANT");
-  };
-
-  const logOut = () => {
+  // Function to log out the user
+  const logOutUser = () => {
+    setUser(null);
     setUserRole(null);
+    setUserIsLoggedIn(false);
   };
 
   return (
-    <div>
-      {userInfo !== null ? (
+    <>
+      if(userRole ==="RSM")
+      {
         <>
-          <h1>you are logged in</h1>
-          <div className="">
-            <p>id: {userInfo.id}</p>
-            <p>Name: {userInfo.name}</p>
-            <p>email: {userInfo.email}</p>
-            <p>age: {userInfo.age}</p>
-            <p>occupation: {userInfo.occupation}</p>
-            <p>role: {userInfo.role}</p>
-            {userInfo.role === "Adjutant" ? (
-              <>
-                <p>State of Fuel is {userInfo.fuelState} </p>
-                <p>Movement of troops: {userInfo.troopsMovement} </p>
-              </>
-            ) : (
-              <p></p>
-            )}
-          </div>
-          <button onClick={logOut}>Log out</button>
+          <P>please you can acess this page </P>
+          <button onClick={logOutUser}>Log out</button>
         </>
-      ) : (
+      }
+      else (userRole === "ADJUTANT")
+      {
         <>
-          <h1>you are not logged in, please log in </h1>
-          <button onClick={logInAsRSM}>Log in as RSM</button>
-          <button onClick={logInAsAdjutant}>Log in as ADJUTANT</button>
+          <p>Welcome Sir</p>
+          <p>id: {user.id}</p>
+          <p>Name: {user.name}</p>
+          <p>email: {user.email}</p>
+          <p>age: {user.age}</p>
+          <p>occupation: {user.occupation}</p>
         </>
-      )}
-
-      {userRole === "RSM" && (
-        <div>
-          <h1>Sorry, you can't access this information.</h1>
-          <button onClick={logOut}>Log out</button>
-        </div>
-      )}
-
-      {userRole === "ADJUTANT" && (
-        <div>
-          <h1>You are logged in as ADJUTANT</h1>
-          <p>Admin-Only Content:</p>
-          <p>This content is visible only to ADJUTANT.</p>
-          <p>stateOfPol: "250ltrs"</p>
-          <p>MvmtOfTps: "Accra,Tema"</p>
-          <p>unitAccommodation: "250 units"</p>
-          <button onClick={logOut}>Log out</button>
-        </div>
-      )}
-      {userRole === null && (
-        <div>
-          <h1>You are not logged in, please log in</h1>
-          <button onClick={logInAsRSM}>Log in as RSM</button>
-          <button onClick={logInAsAdjutant}>Log in as ADJUTANT</button>
-        </div>
-      )}
-      <FirstComponent />
-      <SecondComponent />
-    </div>
+      }
+      <>
+      <h1>You are not logged in, please log in</h1>
+          <button onClick={() => userLoggIn("RSM")}>Log in as RSM</button>
+          <button onClick={() => userLoggIn("ADJUTANT")}>Log in as Adjutant</button>
+      </>
+    </>
   );
 }
 
