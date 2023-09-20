@@ -1,4 +1,4 @@
-export const userInfo = {
+export const userData = {
   id: 1,
   name: "Henri Miensan",
   email: "henri@gmail.com",
