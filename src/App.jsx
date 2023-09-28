@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
 import InputForm from "./components/InputForm";
+import UserComponent from "./components/UserComponent";
 
 const userData = {
   id: 1,
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <div>
+      <UserComponent/>
       <InputForm />
       {userInfo !== null && userInfo.role === "RSM" ? (
         <div>
