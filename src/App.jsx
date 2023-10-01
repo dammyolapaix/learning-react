@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UserComponent from "./components/UserComponent";
 import UserComponent2 from "./components/UserComponent2";
+import UserComponent3 from "./components/UserComponent3";
 // import FirstComponent from "./components/FirstComponent";
 // import SecondComponent from "./components/SecondComponent";
 // import InputForm from "./components/InputForm";
@@ -26,6 +27,8 @@ function App() {
   const [role, setRole] = useState("");
   const [fuelState, setFuelState] = useState("");
   // Add phone number and gender
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
   const [formInput, setFormInput] = useState({});
 
   const handleSubmit = (e) => {
@@ -37,6 +40,8 @@ function App() {
       occupation: occupation,
       role: role,
       fuelState: fuelState,
+      phoneNumber: phoneNumber,
+      gender: gender,
     };
     setFormInput(formUserInput);
   };
@@ -94,6 +99,23 @@ function App() {
           placeholder="Fuel State"
           onChange={(e) => setFuelState(e.target.value)}
         />
+        <label>Phone Number</label>
+        <input
+          type="number"
+          placeholder="Phone number"
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <label htmlFor="">Gender</label>
+        <select
+          name=""
+          id="gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        >
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">female</option>
+        </select>
         <button type="submit">Submit</button>
       </form>
 
@@ -101,6 +123,8 @@ function App() {
 
       <div className="">Second component</div>
       <UserComponent2 userFormInput={formInput} />
+      <div className="">Third Component</div>
+      <UserComponent3 userFormInput={formInput}/>
       {/* <UserInputComponent /> */}
       {/* <InputForm /> */}
       {/* {userInfo !== null && userInfo.role === "RSM" ? (
