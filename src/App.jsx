@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserComponent from "./components/UserComponent";
 import UserComponent2 from "./components/UserComponent2";
 import UserComponent3 from "./components/UserComponent3";
+import { useEffect } from "react";
 // import FirstComponent from "./components/FirstComponent";
 // import SecondComponent from "./components/SecondComponent";
 // import InputForm from "./components/InputForm";
@@ -30,6 +31,7 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [formInput, setFormInput] = useState({});
+  const [users, setUsers] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,8 +59,37 @@ function App() {
   //   setUserInfo(null);
   // };
 
+  // The purpose of the useEffect is to prevent it from making multiple API request and run only once
+  useEffect(() => {
+    // We are feching the users from the API
+    const fetchUsers = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+
+      const apiUsers = await response.json();
+
+      // We set the users in the useState to the users we fetched or get from the API
+      setUsers(apiUsers);
+    };
+
+    // We run the function to call or fetch the users from the API
+    fetchUsers();
+    console.log(users);
+  }, []);
+
   return (
     <div>
+      {users.map((user) => (
+        <div>
+          <div>Id: {user.id}</div>
+          <div>Name: {user.name}</div>
+          <div>Username: {user.username}</div>
+          <div>Email: {user.email}</div>
+          <div>Phone: {user.phone}</div>
+        </div>
+      ))}
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="">name</label>
         <input
@@ -124,7 +155,7 @@ function App() {
       <div className="">Second component</div>
       <UserComponent2 userFormInput={formInput} />
       <div className="">Third Component</div>
-      <UserComponent3 userFormInput={formInput}/>
+      <UserComponent3 userFormInput={formInput} />
       {/* <UserInputComponent /> */}
       {/* <InputForm /> */}
       {/* {userInfo !== null && userInfo.role === "RSM" ? (
