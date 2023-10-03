@@ -3,6 +3,7 @@ import UserComponent from "./components/UserComponent";
 import UserComponent2 from "./components/UserComponent2";
 import UserComponent3 from "./components/UserComponent3";
 import { useEffect } from "react";
+import UserPost from "./components/UserPost";
 // import FirstComponent from "./components/FirstComponent";
 // import SecondComponent from "./components/SecondComponent";
 // import InputForm from "./components/InputForm";
@@ -86,7 +87,19 @@ function App() {
           <div>Name: {user.name}</div>
           <div>Username: {user.username}</div>
           <div>Email: {user.email}</div>
-          <div>Phone: {user.phone}</div>
+          <div>Adress:{user.address.street}</div>
+          <div>suite: {user.address.suite}</div>
+          <div>city: {user.address.city}</div>
+          <div>zipcode: {user.address.zipcode}</div>
+          <div>lat: {user.address.geo.lat}</div>
+          <div>lng: {user.address.geo.lng}</div>
+          <div>phone: {user.phone}</div>
+          <div>website: {user.website}</div>
+          <div>compagny name: {user.company.name}</div>
+          <div>compagny catchphrase: {user.company.catchPhrase}</div>
+          <div>compagny bs: {user.company.bs}</div>
+
+
         </div>
       ))}
 
@@ -156,6 +169,7 @@ function App() {
       <UserComponent2 userFormInput={formInput} />
       <div className="">Third Component</div>
       <UserComponent3 userFormInput={formInput} />
+      <UserPost/>
       {/* <UserInputComponent /> */}
       {/* <InputForm /> */}
       {/* {userInfo !== null && userInfo.role === "RSM" ? (
