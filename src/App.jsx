@@ -4,6 +4,7 @@ import UserComponent2 from "./components/UserComponent2";
 import UserComponent3 from "./components/UserComponent3";
 import { useEffect } from "react";
 import UserPost from "./components/UserPost";
+import { Link } from "react-router-dom";
 // import FirstComponent from "./components/FirstComponent";
 // import SecondComponent from "./components/SecondComponent";
 // import InputForm from "./components/InputForm";
@@ -81,6 +82,11 @@ function App() {
 
   return (
     <div>
+      <div className="">
+        <Link to={`/`}>Home Page</Link>
+        <Link to={`/about`}>About Page</Link>
+      </div>
+
       {users.map((user) => (
         <div>
           <div>Id: {user.id}</div>
@@ -98,8 +104,6 @@ function App() {
           <div>compagny name: {user.company.name}</div>
           <div>compagny catchphrase: {user.company.catchPhrase}</div>
           <div>compagny bs: {user.company.bs}</div>
-
-
         </div>
       ))}
 
@@ -169,7 +173,7 @@ function App() {
       <UserComponent2 userFormInput={formInput} />
       <div className="">Third Component</div>
       <UserComponent3 userFormInput={formInput} />
-      <UserPost/>
+      <UserPost />
       {/* <UserInputComponent /> */}
       {/* <InputForm /> */}
       {/* {userInfo !== null && userInfo.role === "RSM" ? (
