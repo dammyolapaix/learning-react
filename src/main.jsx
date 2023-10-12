@@ -6,8 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.jsx";
 import "./index.css";
-import Root from "./routes/root.jsx";
-import AboutPage from "./AboutPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
+import PostPage from "./pages/PostPage.jsx";
+import SinglePostPage from "./pages/SinglePostPage.jsx";
 
 // Like creating an HTLM Page, like about.html, contact.html
 const router = createBrowserRouter([
@@ -26,6 +27,18 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <AboutPage />,
+  },
+  {
+    path: "/contact",
+    element: <AboutPage />,
+  },
+  {
+    path: "/posts",
+    element: <PostPage />,
+  },
+  {
+    path: "/posts/:postId",
+    element: <SinglePostPage />,
   },
 ]);
 
