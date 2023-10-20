@@ -9,6 +9,10 @@ import "./index.css";
 import AboutPage from "./pages/AboutPage.jsx";
 import PostPage from "./pages/PostPage.jsx";
 import SinglePostPage from "./pages/SinglePostPage.jsx";
+import CommentPage from "./CommentPage.jsx";
+import SingleCommentPage from "./pages/SingleCommentPage.jsx";
+import AlbumsPage from "./pages/AlbumsPage.jsx";
+import SingleAlbum from "./pages/SingleAlbum.jsx";
 
 // Like creating an HTLM Page, like about.html, contact.html
 const router = createBrowserRouter([
@@ -39,6 +43,27 @@ const router = createBrowserRouter([
   {
     path: "/posts/:postId",
     element: <SinglePostPage />,
+  },
+
+  {
+    path: "/comments/",
+    element: <CommentPage />,
+  },
+
+  {
+    path: "/comments/:commentId",
+    element: <SingleCommentPage />,
+  },
+  {
+    path: "/albums",
+    element: <AlbumsPage />,
+  },
+  {
+    // path: "/album/:albumId",
+    // element: <SingleAlbum />,
+
+    path: "/albums/:albumId",
+    element: <SingleAlbum />,
   },
 ]);
 

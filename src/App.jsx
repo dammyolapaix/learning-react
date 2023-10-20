@@ -86,6 +86,8 @@ function App() {
         <Link to={`/`}>Home Page</Link>
         <Link to={`/about`}>About Page</Link>
         <Link to={`/posts`}>Post Page</Link>
+        <Link to={`/comments`}>Comment Page</Link>
+        <Link to={`/albums`}> Albums page</Link>
       </div>
 
       {users.map((user) => (
